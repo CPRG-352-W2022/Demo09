@@ -23,7 +23,7 @@ public class NoteServlet extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             String email = (String) session.getAttribute("email");
-            List<Note> notes = ns.getAll(email);
+            List<Note> notes = ns.getAllByOwner(email);
             request.setAttribute("notes", notes);
         } catch (Exception ex) {
             Logger.getLogger(NoteServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -77,7 +77,7 @@ public class NoteServlet extends HttpServlet {
         }
 
         try {
-            List<Note> notes = ns.getAll(email);
+            List<Note> notes = ns.getAllByOwner(email);
             request.setAttribute("notes", notes);
         } catch (Exception ex) {
             Logger.getLogger(NoteServlet.class.getName()).log(Level.SEVERE, null, ex);
